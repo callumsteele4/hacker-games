@@ -77,25 +77,25 @@ namespace hacker_games_trainline
             Persons.AddRelationship(marta, callum, RelationshipType.Nephew.ToString());
             Persons.AddRelationship(marta, alexandre, RelationshipType.Father.ToString());
             Persons.AddRelationship(marta, shakeel, RelationshipType.Father.ToString());
-            Persons.AddRelationship(CurrentUser.User, tom, RelationshipType.Brother.ToString());
+            Persons.AddRelationship(marta, tom, RelationshipType.Brother.ToString());
             
             Persons.AddRelationship(callum, CurrentUser.User, RelationshipType.Mother.ToString());
             Persons.AddRelationship(callum, marta, RelationshipType.Aunt.ToString());
             Persons.AddRelationship(callum, alexandre, RelationshipType.Grandfather.ToString());
             Persons.AddRelationship(callum, shakeel, RelationshipType.Grandfather.ToString());
-            Persons.AddRelationship(CurrentUser.User, tom, RelationshipType.Father.ToString());
+            Persons.AddRelationship(callum, tom, RelationshipType.Father.ToString());
             
             Persons.AddRelationship(alexandre, CurrentUser.User, RelationshipType.Daughter.ToString());
             Persons.AddRelationship(alexandre, marta, RelationshipType.Daughter.ToString());
             Persons.AddRelationship(alexandre, callum, RelationshipType.Grandson.ToString());
             Persons.AddRelationship(alexandre, shakeel, RelationshipType.Husband.ToString());
-            Persons.AddRelationship(CurrentUser.User, tom, RelationshipType.Grandfather.ToString());
+            Persons.AddRelationship(alexandre, tom, RelationshipType.Grandfather.ToString());
             
             Persons.AddRelationship(shakeel, CurrentUser.User, RelationshipType.Daughter.ToString());
             Persons.AddRelationship(shakeel, marta, RelationshipType.Daughter.ToString());
             Persons.AddRelationship(shakeel, callum, RelationshipType.Grandson.ToString());
             Persons.AddRelationship(shakeel, alexandre, RelationshipType.Husband.ToString());
-            Persons.AddRelationship(CurrentUser.User, tom, RelationshipType.Grandfather.ToString());            
+            Persons.AddRelationship(shakeel, tom, RelationshipType.Grandfather.ToString());            
         }
     }
 }
