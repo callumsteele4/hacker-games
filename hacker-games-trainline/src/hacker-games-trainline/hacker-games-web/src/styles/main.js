@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     borderRadius: '8px',
     fontSize: '24px',
     border: 0,
-    margin: '12px 0',
+    margin: '12px auto',
     display: 'block'
   },
   topaz: {
