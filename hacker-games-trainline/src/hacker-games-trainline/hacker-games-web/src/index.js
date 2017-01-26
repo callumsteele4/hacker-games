@@ -11,7 +11,6 @@ import { Map } from 'immutable';
 import thunk from 'redux-thunk';
 import * as createLogger from 'redux-logger';
 import rootReducer from './reducers';
-import './styles/main.css';
 
 const env = process.env.NODE_ENV;
 const middlewares = [ thunk ];

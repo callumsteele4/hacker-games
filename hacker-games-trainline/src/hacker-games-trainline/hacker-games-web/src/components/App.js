@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import { css } from 'aphrodite';
 import './App.css';
+import { styles } from '../styles/main';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className={css(styles.root)}>
           Hello world
       </div>
     );
