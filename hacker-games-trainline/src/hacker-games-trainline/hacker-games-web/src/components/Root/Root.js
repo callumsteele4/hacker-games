@@ -9,6 +9,10 @@ const styles = StyleSheet.create({
   }
 });
 
+fetch('http://hacker-games-trainline20170126053304.azurewebsites.net/api/user').then(res => {
+  console.log(res);
+});
+
 const Root = ({ children }) => (
   <div className={css(styles.root)}>
     { children }
