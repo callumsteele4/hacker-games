@@ -6,6 +6,19 @@ namespace hacker_games_trainline.Model
 {
     public class Person
     {
+        public Person() { }
+
+        public Person(Person person)
+        {
+            Id = person.Id;
+            Name = person.Name;
+            Birthday = person.Birthday;
+            City = person.City;
+            Job = person.Job;
+            PartnerId = person.PartnerId;
+            ChildrenIds = person.ChildrenIds;
+        }
+
         public int Id { get; set; }
         public string Name { get; set; }
         public DateTime Birthday { get; set; }
