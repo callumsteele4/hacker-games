@@ -1,5 +1,7 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
+import { connect } from 'react-redux';
+import { getUser } from '../../actions/sessionActions';
 
 const styles = StyleSheet.create({
   root: {
@@ -9,10 +11,23 @@ const styles = StyleSheet.create({
   }
 });
 
-const Root = ({ children }) => (
-  <div className={css(styles.root)}>
-    { children }
-  </div>
-);
+class Root extends React.Component {
+  componentWillMount() {
+    const { getUser } = this.props;
+    getUser();
+  }
 
-export default Root;
+  render() {
+    const { children } = this.props;
+
+    return (
+      <div className={css(styles.root)}>
+        { children }
+      </div>
+    );
+  }
+}
+
+export default connect(null, dispatch => ({
+  getUser: () => { getUser()(dispatch) }
+}))(Root);

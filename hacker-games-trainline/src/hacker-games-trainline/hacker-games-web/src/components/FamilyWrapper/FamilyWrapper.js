@@ -1,14 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { getUser } from '../../actions/sessionActions';
 import Header from '../Header/Header';
 import BackButton from '../BackButton/BackButton';
+import { getRelations } from '../../actions/usersActions';
 
 class FamilyWrapper extends React.Component {
   componentWillMount() {
-    const { getUser } = this.props;
-    getUser();
+    const { getRelations } = this.props;
+    getRelations();
   }
 
   render() {
@@ -26,5 +25,5 @@ class FamilyWrapper extends React.Component {
 }
 
 export default connect(null, dispatch => ({
-  getUser: () => { getUser()(dispatch) }
+  getRelations: () => { getRelations()(dispatch) }
 }))(FamilyWrapper);

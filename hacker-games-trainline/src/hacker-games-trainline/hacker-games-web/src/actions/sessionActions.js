@@ -1,6 +1,5 @@
 import { ADD_USER } from '../constants/sessionConstants';
-
-const baseUrl = 'http://hacker-games-trainline20170126053304.azurewebsites.net/api';
+import config from '../config.json';
 
 const addUser = (payload) => ({
   type: ADD_USER,
@@ -8,7 +7,7 @@ const addUser = (payload) => ({
 })
 
 export const getUser = () => dispatch => {
-  return fetch(`${baseUrl}/user`)
+  return fetch(`${config.apiUrl}/user`)
   .then(res => res.json())
   .then(res => dispatch(addUser(res)));
 };
