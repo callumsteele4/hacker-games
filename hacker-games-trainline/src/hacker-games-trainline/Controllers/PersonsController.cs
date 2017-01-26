@@ -22,7 +22,7 @@ namespace hacker_games_trainline.Controllers
         [HttpPost]
         public JsonResult Post([FromBody] Person person)
         {
-            Persons.AddPerson(person, null);
+            Persons.AddPerson(person);
 
             return Json(person);
         }

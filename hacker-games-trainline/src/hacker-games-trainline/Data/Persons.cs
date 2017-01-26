@@ -8,15 +8,14 @@ namespace hacker_games_trainline.Data
 {
     public static class Persons
     {
-        private static int _nextId;
+        private static int _nextId = 0;
         private static readonly BidirectionalGraph<Person, Relationship> Graph = new BidirectionalGraph<Person, Relationship>();
 
-        public static void AddPerson(Person person, Relationship relationship)
+        public static void AddPerson(Person person)
         {
             person.Id = _nextId;
             _nextId++;
             Graph.AddVertex(person);
-            if (relationship != null) Graph.AddEdge(relationship);
         }
 
         public static Person FindPerson(int id)
