@@ -30,19 +30,22 @@ const styles = StyleSheet.create({
     textAlign: 'right'
   },
   item: {
-    flex: 1
+    flex: 1,
+    display: 'flex',
+    alignSelf: 'center'
   }
 });
 
 // section: 'quiz' | 'family' | 'add'
 const Header = ({ section, leftItem }) => {
   const currentSection = sections[section];
+
   return (
     <div
       className={css(styles.container)}
       style={{ backgroundColor: currentSection.color }}>
       <div className={css(styles.item)}>{ leftItem }</div>
-      <div className={css(styles.item)}>
+      <div className={css(styles.item)} style={{ justifyContent: 'flex-end'}}>
         <h2 className={css(styles.title)}>{ currentSection.label }</h2>
       </div>
     </div>

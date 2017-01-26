@@ -17,7 +17,7 @@ class FamilyWrapper extends React.Component {
       <div>
         <Header
           section="family"
-          leftItem={(<BackButton/>)}/>
+          leftItem={(<BackButton onClick={() => null}/>)}/>
         { children }
       </div>
     );
