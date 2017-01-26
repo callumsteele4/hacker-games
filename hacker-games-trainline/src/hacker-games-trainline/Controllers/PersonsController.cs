@@ -16,6 +16,17 @@ namespace hacker_games_trainline.Controllers
                 Photo = new Photo(),
                 Name = "Callum Steele"
             });
-        } 
+        }
+
+        [HttpGet("{id}")]
+        public JsonResult Get(string id)
+        {
+            return Json(new Person
+            {
+                Birthday = DateTime.Now,
+                Photo = new Photo(),
+                Name = "Natalie Akam"
+            });
+        }
     }
 }
