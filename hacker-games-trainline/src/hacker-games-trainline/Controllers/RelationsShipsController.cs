@@ -4,12 +4,14 @@ using Microsoft.AspNetCore.Mvc;
 namespace hacker_games_trainline.Controllers
 {
     [Route("api/[controller]")]
-    public class RelationsShipsController : Controller
+    public class RelationshipsController : Controller
     {
         [HttpPost]
-        public void Relationship(int fromId, int toId, string relationshipTag)
+        public void Post(int fromId, int toId, string relationshipTag)
         {
-            Persons.AddRelationship(fromId, toId, relationshipTag);
+            var fromPerson = Persons.FindPerson(fromId);
+            var toPerson = Persons.FindPerson(toId);
+            Persons.AddRelationship(fromPerson, toPerson, relationshipTag);
         }
     }
 }
