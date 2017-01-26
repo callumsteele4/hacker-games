@@ -3,8 +3,7 @@ import { StyleSheet } from 'aphrodite/no-important';
 
 export const styles = StyleSheet.create({
   root: {
-    backgroundColor: colors.white,
-
+    backgroundColor: colors.white
   },
   largeBtn: {
     color: colors.white,
@@ -14,7 +13,8 @@ export const styles = StyleSheet.create({
     fontSize: '24px',
     border: 0,
     margin: '12px auto',
-    display: 'block'
+    display: 'block',
+    cursor: 'pointer'
   },
   topaz: {
     backgroundColor: colors.topaz

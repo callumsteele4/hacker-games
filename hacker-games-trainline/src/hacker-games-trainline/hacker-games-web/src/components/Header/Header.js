@@ -21,7 +21,9 @@ const styles = StyleSheet.create({
     width: '100%',
     minHeight: 50,
     display: 'flex',
-    justifyContent: 'column'
+    justifyContent: 'column',
+    padding: '0px 20px',
+    boxSizing: 'border-box'
   },
   title: {
     color: 'white',

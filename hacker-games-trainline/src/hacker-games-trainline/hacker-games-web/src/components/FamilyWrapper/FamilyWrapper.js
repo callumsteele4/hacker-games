@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Header from '../Header/Header';
 import BackButton from '../BackButton/BackButton';
 import { getRelations } from '../../actions/usersActions';
+import { browserHistory } from 'react-router';
 
 class FamilyWrapper extends React.Component {
   componentWillMount() {
@@ -17,7 +18,7 @@ class FamilyWrapper extends React.Component {
       <div>
         <Header
           section="family"
-          leftItem={(<BackButton onClick={() => null}/>)}/>
+          leftItem={(<BackButton onClick={() => browserHistory.goBack()}/>)}/>
         { children }
       </div>
     );
