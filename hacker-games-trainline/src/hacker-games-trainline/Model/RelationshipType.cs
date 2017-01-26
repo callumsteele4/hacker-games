@@ -5,6 +5,8 @@ namespace hacker_games_trainline.Data
         Father,
         Mother,
         Son,
-        Daughter
+        Daughter,
+        Husband,
+        Wife
     }
 }
