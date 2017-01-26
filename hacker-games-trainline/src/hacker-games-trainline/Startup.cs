@@ -19,7 +19,7 @@ namespace hacker_games_trainline
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
-            
+
             Configuration = builder.Build();
 
             Seed();
@@ -43,6 +43,7 @@ namespace hacker_games_trainline
             app.UseCors(builder =>
                 builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseMvc();
+            app.UseStaticFiles();
         }
 
         private void Seed()
@@ -52,6 +53,7 @@ namespace hacker_games_trainline
             var martaId = 2;
             var alexandreId = 3;
             var shakeelId = 4;
+
             var tomId = 5;
             CurrentUser.User = new Person {Name = "Natalie Akam", ChildrenIds = new List<int> {callumId}, PartnerId = tomId};
             Persons.AddPerson(CurrentUser.User);
