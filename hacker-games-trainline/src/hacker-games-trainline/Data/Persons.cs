@@ -30,11 +30,12 @@ namespace hacker_games_trainline.Data
                 .Select(e => new KeyValuePair<Person, string>(e.Target, e.Tag.ToString()));
         }
 
-        public static void AddRelationship(int fromId, int toId, string relationshipTag)
+        public static void AddRelationship(Person fromPerson, Person toPerson, string relationshipTag)
         {
-            var fromPerson = FindPerson(fromId);
-            var toPerson = FindPerson(toId);
-            var relationship = new Relationship(fromPerson, toPerson, (RelationshipType) Enum.Parse(typeof(RelationshipType), relationshipTag));
+            var relationship = new Relationship(
+                fromPerson,
+                toPerson,
+                (RelationshipType) Enum.Parse(typeof(RelationshipType), relationshipTag));
             Graph.AddEdge(relationship);
         }
     }

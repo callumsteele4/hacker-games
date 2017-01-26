@@ -7,9 +7,11 @@ namespace hacker_games_trainline.Controllers
     public class RelationshipsController : Controller
     {
         [HttpPost]
-        public void Relationship(int fromId, int toId, string relationshipTag)
+        public void Post(int fromId, int toId, string relationshipTag)
         {
-            Persons.AddRelationship(fromId, toId, relationshipTag);
+            var fromPerson = Persons.FindPerson(fromId);
+            var toPerson = Persons.FindPerson(toId);
+            Persons.AddRelationship(fromPerson, toPerson, relationshipTag);
         }
     }
 }
