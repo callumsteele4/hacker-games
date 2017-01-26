@@ -54,14 +54,14 @@ namespace hacker_games_trainline
             var shakeelId = 4;
 
             var tomId = 5;
-            CurrentUser.User = new Person {Name = "Natalie Akam", ChildrenIds = new List<int> {callumId}, PartnerId = tomId};
+            CurrentUser.User = new Person {Name = "Natalie Akam", ChildrenIds = new List<int> {callumId}, PartnerId = tomId, PicturePath = "Natalie.jpg" };
             Persons.AddPerson(CurrentUser.User);
 
-            var callum = new Person { Name = "Callum Steele" , City = "London", Job = "Developer", Note = "Callum likes to party!"};
-            var marta = new Person { Name = "Marta Ludovico" , City = "Reading", Job = "Developer", Note = "Marta hurt her ankle"};
-            var alexandre = new Person { Name = "Alexandre Rieux", ChildrenIds = new List<int> {natalieId, martaId}, PartnerId = shakeelId};
-            var shakeel = new Person { Name = "Shakeel Mohammed", ChildrenIds = new List<int> {natalieId, martaId}, PartnerId = alexandreId};
-            var tom = new Person { Name = "Tom Price", ChildrenIds = new List<int> {callumId}, PartnerId = natalieId};
+            var callum = new Person { Name = "Callum Steele" , City = "London", Job = "Developer", Note = "Callum likes to party!", PicturePath = "Callum.jpg" };
+            var marta = new Person { Name = "Marta Ludovico" , City = "Reading", Job = "Developer", Note = "Marta hurt her ankle", PicturePath = "Marta.jpg" };
+            var alexandre = new Person { Name = "Alexandre Rieux", ChildrenIds = new List<int> {natalieId, martaId}, PartnerId = shakeelId, PicturePath = "Alex.jpg" };
+            var shakeel = new Person { Name = "Shakeel Mohammed", ChildrenIds = new List<int> {natalieId, martaId}, PartnerId = alexandreId, PicturePath = "Shak.jpg" };
+            var tom = new Person { Name = "Tom Price", ChildrenIds = new List<int> {callumId}, PartnerId = natalieId, PicturePath = "Tom.jpg" };
             
             Persons.AddPerson(callum);
             Persons.AddPerson(marta);
