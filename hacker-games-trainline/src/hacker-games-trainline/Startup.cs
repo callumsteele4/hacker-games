@@ -18,7 +18,7 @@ namespace hacker_games_trainline
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
-            
+
             Configuration = builder.Build();
 
             Seed();
@@ -42,6 +42,7 @@ namespace hacker_games_trainline
             app.UseCors(builder =>
                 builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseMvc();
+            app.UseStaticFiles();
         }
 
         private void Seed()
@@ -51,13 +52,13 @@ namespace hacker_games_trainline
             var martaId = 2;
             var alexandreId = 3;
             var shakeelId = 4;
-            CurrentUser.User = new Person {Name = "Natalie Akam", ChildrenIds = new List<int> {callumId} };
+            CurrentUser.User = new Person { Name = "Natalie Akam", ChildrenIds = new List<int> { callumId } };
             Persons.AddPerson(CurrentUser.User);
 
             var callum = new Person { Name = "Callum Steele" };
             var marta = new Person { Name = "Marta Ludovico" };
-            var alexandre = new Person { Name = "Alexandre Rieux", ChildrenIds = new List<int> {natalieId, martaId}, PartnerId = shakeelId};
-            var shakeel = new Person { Name = "Shakeel Mohammed", ChildrenIds = new List<int> {natalieId, martaId}, PartnerId = alexandreId};
+            var alexandre = new Person { Name = "Alexandre Rieux", ChildrenIds = new List<int> { natalieId, martaId }, PartnerId = shakeelId };
+            var shakeel = new Person { Name = "Shakeel Mohammed", ChildrenIds = new List<int> { natalieId, martaId }, PartnerId = alexandreId };
 
             Persons.AddPerson(callum);
             Persons.AddPerson(marta);
@@ -73,7 +74,7 @@ namespace hacker_games_trainline
             Persons.AddRelationship(marta, callum, RelationshipType.Nephew.ToString());
             Persons.AddRelationship(marta, alexandre, RelationshipType.Father.ToString());
             Persons.AddRelationship(marta, shakeel, RelationshipType.Father.ToString());
-            
+
             Persons.AddRelationship(callum, CurrentUser.User, RelationshipType.Mother.ToString());
             Persons.AddRelationship(callum, marta, RelationshipType.Aunt.ToString());
             Persons.AddRelationship(callum, alexandre, RelationshipType.Grandfather.ToString());
