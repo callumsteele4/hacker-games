@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace hacker_games_trainline.Controllers
 {
     [Route("api/[controller]")]
-    public class RelationsShipsController : Controller
+    public class RelationshipsController : Controller
     {
         [HttpPost]
         public void Relationship(int fromId, int toId, string relationshipTag)
