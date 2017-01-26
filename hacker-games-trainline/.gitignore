@@ -197,7 +197,6 @@ node_modules/
 orleans.codegen.cs
 typings/
 dist/
-wwwroot/
 artifacts/
 
 # RIA/Silverlight projects
