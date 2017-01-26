@@ -11,7 +11,8 @@ namespace hacker_games_trainline.Model
         public DateTime Birthday { get; set; }
         public string City { get; set; }
         public string Job { get; set; }
-        public int PartnerId { get; set; }
+        public int? PartnerId { get; set; }
         public List<int> ChildrenIds { get; set; }
+        public string Relation { get; set; }
     }
 }
