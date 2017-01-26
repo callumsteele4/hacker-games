@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using hacker_games_trainline.Data;
 using hacker_games_trainline.Model;
 using Microsoft.AspNetCore.Builder;
@@ -54,15 +55,17 @@ namespace hacker_games_trainline
             var shakeelId = 4;
 
             var tomId = 5;
-            CurrentUser.User = new Person {Name = "Natalie Akam", ChildrenIds = new List<int> {callumId}, PartnerId = tomId, PicturePath = "Natalie.jpg" };
+            CurrentUser.User = new Person { Name = "Natalie Akam", ChildrenIds = new List<int> { callumId }, PartnerId = tomId, PicturePath = "Natalie.jpg" };
             Persons.AddPerson(CurrentUser.User);
 
-            var callum = new Person { Name = "Callum Steele" , City = "London", Job = "Developer", Note = "Callum likes to party!", PicturePath = "Callum.jpg" };
-            var marta = new Person { Name = "Marta Ludovico" , City = "Reading", Job = "Developer", Note = "Marta hurt her ankle", PicturePath = "Marta.jpg" };
-            var alexandre = new Person { Name = "Alexandre Rieux", ChildrenIds = new List<int> {natalieId, martaId}, PartnerId = shakeelId, PicturePath = "Alex.jpg" };
-            var shakeel = new Person { Name = "Shakeel Mohammed", ChildrenIds = new List<int> {natalieId, martaId}, PartnerId = alexandreId, PicturePath = "Shak.jpg" };
-            var tom = new Person { Name = "Tom Price", ChildrenIds = new List<int> {callumId}, PartnerId = natalieId, PicturePath = "Tom.jpg" };
-            
+
+            var callum = new Person { Name = "Callum Steele", City = "London", Job = "Developer", Note = "Callum likes to party!", Birthday = new DateTime(1992, 6, 15), PicturePath = "Callum.jpg" };
+            var marta = new Person { Name = "Marta Ludovico", City = "Reading", Job = "Developer", Note = "Marta hurt her ankle", Birthday = new DateTime(1987, 8, 12), PicturePath = "Marta.jpg" };
+            var alexandre = new Person { Name = "Alexandre Rieux", Birthday = new DateTime(1982, 6, 10), ChildrenIds = new List<int> { natalieId, martaId }, PartnerId = shakeelId, PicturePath = "Alex.jpg" };
+            var shakeel = new Person { Name = "Shakeel Mohammed", Birthday = new DateTime(1984, 6, 25), ChildrenIds = new List<int> { natalieId, martaId }, PartnerId = alexandreId, PicturePath = "Shak.jpg" };
+            var tom = new Person { Name = "Tom Price", Birthday = new DateTime(1965, 6, 21), ChildrenIds = new List<int> { callumId }, PartnerId = natalieId, PicturePath = "Tom.jpg" };
+
+
             Persons.AddPerson(callum);
             Persons.AddPerson(marta);
             Persons.AddPerson(alexandre);
@@ -80,24 +83,24 @@ namespace hacker_games_trainline
             Persons.AddRelationship(marta, alexandre, RelationshipType.Father.ToString());
             Persons.AddRelationship(marta, shakeel, RelationshipType.Father.ToString());
             Persons.AddRelationship(marta, tom, RelationshipType.Brother.ToString());
-            
+
             Persons.AddRelationship(callum, CurrentUser.User, RelationshipType.Mother.ToString());
             Persons.AddRelationship(callum, marta, RelationshipType.Aunt.ToString());
             Persons.AddRelationship(callum, alexandre, RelationshipType.Grandfather.ToString());
             Persons.AddRelationship(callum, shakeel, RelationshipType.Grandfather.ToString());
             Persons.AddRelationship(callum, tom, RelationshipType.Father.ToString());
-            
+
             Persons.AddRelationship(alexandre, CurrentUser.User, RelationshipType.Daughter.ToString());
             Persons.AddRelationship(alexandre, marta, RelationshipType.Daughter.ToString());
             Persons.AddRelationship(alexandre, callum, RelationshipType.Grandson.ToString());
             Persons.AddRelationship(alexandre, shakeel, RelationshipType.Husband.ToString());
             Persons.AddRelationship(alexandre, tom, RelationshipType.Grandfather.ToString());
-            
+
             Persons.AddRelationship(shakeel, CurrentUser.User, RelationshipType.Daughter.ToString());
             Persons.AddRelationship(shakeel, marta, RelationshipType.Daughter.ToString());
             Persons.AddRelationship(shakeel, callum, RelationshipType.Grandson.ToString());
             Persons.AddRelationship(shakeel, alexandre, RelationshipType.Husband.ToString());
-            Persons.AddRelationship(shakeel, tom, RelationshipType.Grandfather.ToString());            
+            Persons.AddRelationship(shakeel, tom, RelationshipType.Grandfather.ToString());
         }
     }
 }
