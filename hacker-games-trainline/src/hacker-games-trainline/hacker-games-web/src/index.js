@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
+import Home from './components/Home/Home';
 import './index.css';
 
 import { Router, Route, browserHistory } from 'react-router';
@@ -27,7 +27,7 @@ const history = syncHistoryWithStore(browserHistory, store, {
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      <Route path="/" component={App}/>
+      <Route path="/" component={Home}/>
     </Router>
   </Provider>,
   document.getElementById('root')
