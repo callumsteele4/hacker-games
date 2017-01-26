@@ -23,11 +23,16 @@ namespace hacker_games_trainline.Data
             return Graph.Vertices.Single(p => p.Id == id);
         }
 
-        public static IEnumerable<KeyValuePair<Person, string>> GetAll()
+        public static IEnumerable<Person> GetAll(int id)
         {
-            var relations = Graph.Edges.Where(e => e.Source.Id == 0);
+            var relations = Graph.Edges.Where(e => e.Source.Id == id);
             return relations
-                .Select(e => new KeyValuePair<Person, string>(e.Target, e.Tag.ToString()));
+                .Select(e =>
+                {
+                    var person = new Person(e.Target);
+                    person.Relation = e.Tag.ToString();
+                    return person;
+                });
         }
 
         public static void AddRelationship(Person fromPerson, Person toPerson, string relationshipTag)

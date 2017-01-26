@@ -3,6 +3,7 @@ import { css } from 'aphrodite';
 import HomeHeader from '../HomeHeader/HomeHeader';
 import { styles } from '../../styles/main';
 import Button from '../Button/Button';
+import UserProfile from '../UserProfile/UserProfile';
 import { Link } from 'react-router';
 
 class Home extends Component {
@@ -10,11 +11,12 @@ class Home extends Component {
     return (
       <div className={css(styles.root)}>
         <HomeHeader/>
-        <Button label="Quiz" style="topaz"/>
+        <UserProfile/>
+        <Button label="Quiz" styleSheet="topaz"/>
         <Link to="/family">
-          <Button label="Family" style="darkSkyBlue"/>
+          <Button label="Family" styleSheet="darkSkyBlue"/>
         </Link>
-        <Button label="Add" style="squash"/>
+        <Button label="Add" styleSheet="squash"/>
       </div>
     );
   }
