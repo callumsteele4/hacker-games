@@ -1,12 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const FamilyDetail = ({ children }) => (
-    <div></div>
-);
+class FamilyDetail extends React.Component {
+  render() {
+    const { user } = this.props;
 
-// (state, props) => ({
-//   user: state.users[props.params.id]
-// })
+    if (!user) {
+      return null;
+    }
+    return(
+      <div>{user.name}</div>
+    )
+  }
+};
 
-export default FamilyDetail;
+const userId = (state, props) => ({
+  user: state.users[props.params.id]
+});
+
+export default connect(userId, null)(FamilyDetail);
+

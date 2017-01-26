@@ -40,17 +40,17 @@ ReactDOM.render(
         {
           // Family section
         }
-        <Route path="/family" component={FamilyWrapper}>
+        <Route path="family" component={FamilyWrapper}>
           <IndexRoute component={Family}/>
-          <Route path="/detail/:id" component={FamilyDetail}/>
+          <Route path="detail/:id" component={FamilyDetail}/>
         </Route>
 
         {
           // Quiz section
         }
-        <Route path="/quiz" component={QuizWrapper}>
+        <Route path="quiz" component={QuizWrapper}>
           <IndexRoute component={Quiz}/>
-          <Route path="/result" component={Result}/>
+          <Route path="result" component={Result}/>
         </Route>
       </Route>
     </Router>
