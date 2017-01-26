@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-import { Router, Route, browserHistory } from 'react-router';
+import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { applyMiddleware, createStore } from 'redux';
 import { Provider } from 'react-redux';
@@ -11,6 +11,7 @@ import * as createLogger from 'redux-logger';
 import rootReducer from './reducers';
 
 // Import the views
+import Root from './components/Root/Root';
 import Home from './components/Home/Home';
 
 import FamilyWrapper from './components/FamilyWrapper/FamilyWrapper';
@@ -36,21 +37,23 @@ const history = syncHistoryWithStore(browserHistory, store, {
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      <Route path="/" component={Home}/>
-      {
-        // Family section
-      }
-      <Route path="/family" component={FamilyWrapper}>
-        <Route path="/" component={Family}/>
-        <Route path="/detail" component={FamilyDetail}/>
-      </Route>
+      <Route path="/" component={Root}>
+        <IndexRoute component={Home}/>
+        {
+          // Family section
+        }
+        <Route path="/family" component={FamilyWrapper}>
+          <Route path="/" component={Family}/>
+          <Route path="/detail" component={FamilyDetail}/>
+        </Route>
 
-      {
-        // Quiz section
-      }
-      <Route path="/quiz" component={QuizWrapper}>
-        <Route path="/" component={Quiz}/>
-        <Route path="/result" component={Result}/>
+        {
+          // Quiz section
+        }
+        <Route path="/quiz" component={QuizWrapper}>
+          <Route path="/" component={Quiz}/>
+          <Route path="/result" component={Result}/>
+        </Route>
       </Route>
     </Router>
   </Provider>,
