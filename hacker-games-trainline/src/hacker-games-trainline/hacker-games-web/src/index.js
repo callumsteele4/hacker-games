@@ -7,7 +7,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { applyMiddleware, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import * as createLogger from 'redux-logger';
+import createLogger from 'redux-logger';
 import rootReducer from './reducers';
 
 // Import the views
@@ -25,9 +25,7 @@ import Result from './components/Result/Result';
 const env = process.env.NODE_ENV;
 const middlewares = [ thunk ];
 
-if (env === 'dev') {
-  middlewares.push(createLogger());
-}
+middlewares.push(createLogger());
 
 const store = createStore(rootReducer, {}, applyMiddleware(...middlewares));
 const history = syncHistoryWithStore(browserHistory, store, {
@@ -43,7 +41,7 @@ ReactDOM.render(
           // Family section
         }
         <Route path="/family" component={FamilyWrapper}>
-          <Route path="/" component={Family}/>
+          <IndexRoute component={Family}/>
           <Route path="/detail" component={FamilyDetail}/>
         </Route>
 
@@ -51,7 +49,7 @@ ReactDOM.render(
           // Quiz section
         }
         <Route path="/quiz" component={QuizWrapper}>
-          <Route path="/" component={Quiz}/>
+          <IndexRoute component={Quiz}/>
           <Route path="/result" component={Result}/>
         </Route>
       </Route>

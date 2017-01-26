@@ -4,6 +4,7 @@ import HomeHeader from '../HomeHeader/HomeHeader';
 import { styles } from '../../styles/main';
 import Button from '../Button/Button';
 import UserProfile from '../UserProfile/UserProfile';
+import { Link } from 'react-router';
 
 class Home extends Component {
   render() {
@@ -12,7 +13,9 @@ class Home extends Component {
         <HomeHeader/>
         <UserProfile/>
         <Button label="Quiz" styleSheet="topaz"/>
-        <Button label="Family" styleSheet="darkSkyBlue"/>
+        <Link to="/family">
+          <Button label="Family" styleSheet="darkSkyBlue"/>
+        </Link>
         <Button label="Add" styleSheet="squash"/>
       </div>
     );
