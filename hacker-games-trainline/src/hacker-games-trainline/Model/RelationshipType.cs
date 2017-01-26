@@ -1,10 +1,22 @@
-namespace hacker_games_trainline.Data
+namespace hacker_games_trainline.Model
 {
     public enum RelationshipType
     {
+        Husband,
+        Wife,
         Father,
         Mother,
         Son,
-        Daughter
+        Daughter,
+        Brother,
+        Sister,
+        Uncle,
+        Aunt,
+        Nephew,
+        Niece,
+        Grandfather,
+        Grandmother,
+        Grandson,
+        Granddaughter
     }
 }

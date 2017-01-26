@@ -1,4 +1,5 @@
 ﻿using hacker_games_trainline.Data;
+using hacker_games_trainline.Model;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -19,7 +20,7 @@ namespace hacker_games_trainline
             
             Configuration = builder.Build();
 
-            Persons.AddPerson(CurrentUser.User);
+            Seed();
         }
 
         public IConfigurationRoot Configuration { get; }
@@ -40,6 +41,46 @@ namespace hacker_games_trainline
             app.UseCors(builder =>
                 builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseMvc();
+        }
+
+        private void Seed()
+        {
+            Persons.AddPerson(CurrentUser.User);
+
+            var callum = new Person { Name = "Callum Steele" };
+            var marta = new Person { Name = "Marta Ludovico" };
+            var alexandre = new Person { Name = "Alexandre Rieux" };
+            var shakeel = new Person { Name = "Shakeel Mohammed" };
+
+            Persons.AddPerson(callum);
+            Persons.AddPerson(marta);
+            Persons.AddPerson(alexandre);
+            Persons.AddPerson(shakeel);
+
+            Persons.AddRelationship(CurrentUser.User, marta, RelationshipType.Sister.ToString());
+            Persons.AddRelationship(CurrentUser.User, callum, RelationshipType.Son.ToString());
+            Persons.AddRelationship(CurrentUser.User, alexandre, RelationshipType.Father.ToString());
+            Persons.AddRelationship(CurrentUser.User, shakeel, RelationshipType.Son.ToString());
+
+            Persons.AddRelationship(marta, CurrentUser.User, RelationshipType.Sister.ToString());
+            Persons.AddRelationship(marta, callum, RelationshipType.Aunt.ToString());
+            Persons.AddRelationship(marta, alexandre, RelationshipType.Father.ToString());
+            Persons.AddRelationship(marta, shakeel, RelationshipType.Aunt.ToString());
+            
+            Persons.AddRelationship(callum, CurrentUser.User, RelationshipType.Mother.ToString());
+            Persons.AddRelationship(callum, marta, RelationshipType.Nephew.ToString());
+            Persons.AddRelationship(callum, alexandre, RelationshipType.Grandson.ToString());
+            Persons.AddRelationship(callum, shakeel, RelationshipType.Brother.ToString());
+
+            Persons.AddRelationship(alexandre, CurrentUser.User, RelationshipType.Daughter.ToString());
+            Persons.AddRelationship(alexandre, marta, RelationshipType.Daughter.ToString());
+            Persons.AddRelationship(alexandre, callum, RelationshipType.Grandson.ToString());
+            Persons.AddRelationship(alexandre, shakeel, RelationshipType.Grandson.ToString());
+
+            Persons.AddRelationship(shakeel, CurrentUser.User, RelationshipType.Mother.ToString());
+            Persons.AddRelationship(shakeel, marta, RelationshipType.Nephew.ToString());
+            Persons.AddRelationship(shakeel, callum, RelationshipType.Brother.ToString());
+            Persons.AddRelationship(shakeel, alexandre, RelationshipType.Grandson.ToString());
         }
     }
 }
