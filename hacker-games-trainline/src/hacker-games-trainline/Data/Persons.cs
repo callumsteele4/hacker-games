@@ -29,8 +29,7 @@ namespace hacker_games_trainline.Data
             return relations
                 .Select(e =>
                 {
-                    var person = new Person(e.Target);
-                    person.Relation = e.Tag.ToString();
+                    var person = new Person(e.Target) {Relation = e.Tag.ToString()};
                     return person;
                 });
         }

@@ -4,5 +4,6 @@
     {
         public string Name { get; set; }
         public string PicturePath { get; set; }
+        public bool? Correct { get; set; }
     }
 }
