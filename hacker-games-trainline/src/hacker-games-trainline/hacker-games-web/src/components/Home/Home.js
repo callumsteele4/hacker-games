@@ -12,7 +12,9 @@ class Home extends Component {
       <div className={css(styles.root)}>
         <HomeHeader/>
         <UserProfile/>
-        <Button label="Quiz" styleSheet="topaz"/>
+        <Link to="/quiz">
+          <Button label="Quiz" styleSheet="topaz"/>
+        </Link>
         <Link to="/family">
           <Button label="Family" styleSheet="darkSkyBlue"/>
         </Link>
