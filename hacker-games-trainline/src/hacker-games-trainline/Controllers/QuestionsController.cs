@@ -1,4 +1,5 @@
-﻿using hacker_games_trainline.Services;
+﻿using hacker_games_trainline.Model;
+using hacker_games_trainline.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace hacker_games_trainline.Controllers
@@ -17,6 +18,12 @@ namespace hacker_games_trainline.Controllers
         public JsonResult Get()
         {
             return Json(_questionGenerator.RandomQuestion());
+        }
+
+        [HttpPost]
+        public void Post([FromBody] Question question)
+        {
+            // Store answer from question.Correct (bool)
         }
     }
 }
