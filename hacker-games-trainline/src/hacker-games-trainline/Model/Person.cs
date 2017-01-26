@@ -17,6 +17,7 @@ namespace hacker_games_trainline.Model
             Note = person.Note;
             PartnerId = person.PartnerId;
             ChildrenIds = person.ChildrenIds;
+            PicturePath = person.PicturePath;
         }
 
         public int Id { get; set; }
@@ -28,5 +29,6 @@ namespace hacker_games_trainline.Model
         public int? PartnerId { get; set; }
         public List<int> ChildrenIds { get; set; }
         public string Relation { get; set; }
+        public string PicturePath { get; set; }
     }
 }
