@@ -42,7 +42,7 @@ ReactDOM.render(
         }
         <Route path="/family" component={FamilyWrapper}>
           <IndexRoute component={Family}/>
-          <Route path="/detail" component={FamilyDetail}/>
+          <Route path="/detail/:id" component={FamilyDetail}/>
         </Route>
 
         {
