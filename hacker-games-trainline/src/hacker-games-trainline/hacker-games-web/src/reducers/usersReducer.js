@@ -1,7 +1,18 @@
+import { ADD_RELATIONS } from '../constants/usersConstants';
 
 export default function(state = {}, action) {
   const { type, payload } = action;
 
-  // TODO: add logic here
-  return state;
+  switch(type) {
+    case ADD_RELATIONS: {
+      return payload.reduce((acc, next) => {
+        acc[next.id] = next;
+        return acc;
+      }, {});
+    }
+
+    default: {
+      return state;
+    }
+  }
 }
