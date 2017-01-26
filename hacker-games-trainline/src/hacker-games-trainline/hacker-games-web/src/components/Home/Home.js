@@ -11,9 +11,9 @@ class Home extends Component {
       <div className={css(styles.root)}>
         <HomeHeader/>
         <UserProfile/>
-        <Button label="Quiz" style="topaz"/>
-        <Button label="Family" style="darkSkyBlue"/>
-        <Button label="Add" style="squash"/>
+        <Button label="Quiz" styleSheet="topaz"/>
+        <Button label="Family" styleSheet="darkSkyBlue"/>
+        <Button label="Add" styleSheet="squash"/>
       </div>
     );
   }

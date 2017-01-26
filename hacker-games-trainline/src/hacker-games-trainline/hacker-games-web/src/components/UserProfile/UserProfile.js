@@ -16,8 +16,6 @@ const userProfileStyle = StyleSheet.create({
   }
 });
 
-const imageLink = "Sophie.jpg";
-
 class UserProfile extends Component {
   render() {
     return (
