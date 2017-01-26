@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'TL-Circular';
+  font-style: normal;
+  font-weight: 400;
+  src: local('TL-Circular'), url(TLCircular-Bold.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'SF';
+  font-style: normal;
+  font-weight: 400;
+  src: local('SF'), url(SF-UI-Text-Regular.woff2) format('woff2');
+}
