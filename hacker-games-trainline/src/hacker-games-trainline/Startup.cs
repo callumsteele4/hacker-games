@@ -66,7 +66,7 @@ namespace hacker_games_trainline
             var alexandre = new Person { Name = "Alexandre Rieux", City = "Paris", Job = "Lord of Shadwell", Note = "He's a Lord", Birthday = new DateTime(1982, 6, 10), ChildrenIds = new List<int> { natalieId, martaId }, PartnerId = shakeelId, PicturePath = "http://hacker-games-trainline20170126053304.azurewebsites.net/Alex.jpg" };
             var shakeel = new Person { Name = "Shakeel Mohammed", City = "Dublin", Job = "Developer", Note = "Shak likes to party!", Birthday = new DateTime(1984, 6, 25), ChildrenIds = new List<int> { natalieId, martaId }, PartnerId = alexandreId, PicturePath = "http://hacker-games-trainline20170126053304.azurewebsites.net/Shak.jpg" };
             var tom = new Person { Name = "Tom Price", City = "Munich", Job = "Rockstar", Note = "Tom likes to party!", Birthday = new DateTime(1965, 6, 21), ChildrenIds = new List<int> { callumId }, PartnerId = natalieId, PicturePath = "http://hacker-games-trainline20170126053304.azurewebsites.net/Tom.jpg" };
-            var prince = new Person { Name = "Prince", Birthday = new DateTime(1960, 6, 21), City = "London", Job = "Developer", Note = "Prince likes to party like its 1999!", ChildrenIds = new List<int> { callumId }, PartnerId = natalieId, PicturePath = "http://hacker-games-trainline20170126053304.azurewebsites.net/Prince.jpg" };
+            var prince = new Person { Name = "Prince", Birthday = new DateTime(1960, 6, 21), City = "London", Job = "Developer", Note = "Prince likes to party like its 1999!", ChildrenIds = new List<int> { callumId }, PartnerId = natalieId, PicturePath = "http://hacker-games-trainline20170126053304.azurewebsites.net/prince.jpg" };
 
 
             Persons.AddPerson(callum);
