@@ -8,7 +8,8 @@ const styles = StyleSheet.create({
     height: 45,
     borderRadius: 8,
     border: 0,
-    cursor: 'pointer'
+    cursor: 'pointer',
+    fontSize: 16
   }
 });
 

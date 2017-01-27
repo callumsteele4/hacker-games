@@ -73,7 +73,7 @@ class Quiz extends React.Component {
     return (
       <div className={css(styles.container)}>
         <Progress current={current}/>
-        <img className={css(styles.picture)} src={pp}/>
+        <img className={css(styles.picture)} src={pp} role="presentation"/>
         <h1 className={css(styles.title)}>
           What's their name ?
         </h1>
