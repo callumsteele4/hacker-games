@@ -19,12 +19,13 @@ const styles = StyleSheet.create({
     display: 'flex',
   },
   thumbnailContainer: {
-
+    width: '75px',
+    height: '75px',
+    overflow: 'hidden',
+    borderRadius: '50%'
   },
   thumbnail: {
-    borderRadius: '50%',
     width: '75px',
-    height: '75px'
   },
   name: {
     color: '#6d6d6d'
