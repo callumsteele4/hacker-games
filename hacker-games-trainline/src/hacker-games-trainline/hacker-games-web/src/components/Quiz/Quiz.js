@@ -4,6 +4,7 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 import { connect } from 'react-redux';
 import { startQuiz, getQuestion, answerQuestion } from '../../actions/quizActions';
 import SmallButton from '../SmallButton/SmallButton';
+import ClickableGallery from '../ClickableGallery/ClickableGallery';
 import Input from '../Input/Input';
 
 const styles = StyleSheet.create({
@@ -25,13 +26,20 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: 'TL-Circular',
     color: '#6c6c6c'
+  },
+  whoisTitle: {
+    color: 'rgb(26, 188, 156)',
+    marginBottom: 50
+  },
+  label: {
+    color: '#b0b0b0'
   }
 });
 
 class Quiz extends React.Component {
 
   state = {
-    questionType: Math.round(Math.random()),
+    mode: 0, // Math.round(Math.random()), // 0 or 1
     value: '',
     tried: 0,
     timing: false
@@ -58,7 +66,7 @@ class Quiz extends React.Component {
     // const computedTried = !isCorrect && tried === 0 ? 1 : undefined;
 
     this.setState({
-      questionType: Math.round(Math.random()),
+      mode: 0, // Math.round(Math.random()),
       value: '',
       tried: 0
     });
@@ -113,6 +121,26 @@ class Quiz extends React.Component {
     }
   }
 
+  onSelectImage = (currentQuestion, isCorrect, wrongPicture) => {
+    const { tried } = this.state;
+    const isEnd = Object.keys(this.props.questions).length === 9;
+
+    if (tried === 0 && !isCorrect) {
+      this.setState({
+        tried: 1,
+        wrongPicture
+      });
+
+      return;
+    }
+
+    if (isEnd) {
+      this.context.router.push('quiz/result');
+    } else {
+      this.answerQuestion(currentQuestion, isCorrect);
+    }
+  }
+
   onChangeInput = (evt) => {
     this.setState({
       value: evt.target.value
@@ -121,6 +149,7 @@ class Quiz extends React.Component {
 
   render() {
     const { quiz, questions } = this.props;
+    const { mode, wrongPicture } = this.state;
 
     let lastQuestion = null;
     let current = 0;
@@ -136,23 +165,49 @@ class Quiz extends React.Component {
       <div className={css(styles.container)}>
         <Progress current={current}/>
         <div className={css(styles.imageContainer)}>
-          <img className={css(styles.picture)} src={pp} role="presentation"/>
+          {
+            mode === 0 ? (
+              <img className={css(styles.picture)} src={pp} role="presentation"/>
+            ) : lastQuestion && (
+              <ClickableGallery
+                images={lastQuestion.picturePaths}
+                wrongPicture={wrongPicture}
+                isWrong={this.state.tried === 1}
+                onClick={this.onSelectImage.bind(this, lastQuestion)}/>
+            )
+          }
         </div>
         <h1 className={css(styles.title)}>
-          What's their name ?
+          {mode === 0 && 'What\'s their name ?'}
         </h1>
-        <Input
-          onChange={this.onChangeInput}
-          isCorrect={lastQuestion && lastQuestion.name === this.state.value}
-          isWrong={this.state.tried === 1}
-          value={this.state.value}/>
+        {
+          mode === 0 ? (
+            <Input
+              onChange={this.onChangeInput}
+              isCorrect={lastQuestion && lastQuestion.name === this.state.value}
+              isWrong={this.state.tried === 1}
+              value={this.state.value}/>
+          ) : (
+            <h2 className={css(styles.whoisTitle)}>
+              <span className={css(styles.label)}>Who is:</span> {lastQuestion && lastQuestion.name}
+            </h2>
+          )
+        }
+
         <div className={css(styles.navigation)}>
           <SmallButton onClick={this.onGetAnswer}>
             Solution
           </SmallButton>
-          <SmallButton onClick={this.onNext.bind(this, lastQuestion)} color="#1abc9c" disable={this.state.timing}>
-            Next
-          </SmallButton>
+          {
+            mode === 0 && (
+              <SmallButton
+                onClick={this.onNext.bind(this, lastQuestion)}
+                color="#1abc9c"
+                disable={this.state.timing}>
+                Next
+              </SmallButton>
+            )
+          }
         </div>
       </div>
     );

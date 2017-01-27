@@ -11,5 +11,5 @@ const logoStyle = StyleSheet.create({
 });
 
 export const Logo = () => (
-  <h1 className={css(logoStyle.main)}>Familymem</h1>
+  <h1 className={css(logoStyle.main)}>Recall</h1>
 );

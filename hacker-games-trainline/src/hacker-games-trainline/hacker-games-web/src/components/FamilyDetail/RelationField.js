@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { styles as familyStyles } from './FamilyDetailStyles';
-import sample from '../../images/sample.png';
 
 const styles = StyleSheet.create({
   relationRow: {
@@ -13,18 +12,20 @@ const styles = StyleSheet.create({
   relationContainer: {
     width: '100px',
     textAlign: 'center',
-    padding: '17px 10px'
+    padding: '0 10px 17px 10px'
   },
   relationItemsContainer: {
     display: 'flex',
   },
   thumbnailContainer: {
-
+    width: '75px',
+    height: '75px',
+    overflow: 'hidden',
+    borderRadius: '50%',
+    margin: '10px auto'
   },
   thumbnail: {
-    borderRadius: '50%',
     width: '75px',
-    height: '75px'
   },
   name: {
     color: '#6d6d6d'
@@ -33,7 +34,7 @@ const styles = StyleSheet.create({
 
 class RelationField extends React.Component {
   render() {
-    const { title, connections, relations } = this.props;
+    const { title, relations } = this.props;
     if(!relations) {
       return null;
     }
@@ -41,7 +42,7 @@ class RelationField extends React.Component {
     const relationItems = relations.map((rel) => (
       <div key={rel.id} className={css(styles.relationContainer)}>
         <div className={css(styles.thumbnailContainer)}>
-          <img className={css(styles.thumbnail)} src={sample} alt={rel.name}/>
+          <img className={css(styles.thumbnail)} src={rel && rel.picturePath} alt={rel.name}/>
         </div>
         <div className={css(styles.name)}>
           {rel.name}
@@ -62,14 +63,17 @@ class RelationField extends React.Component {
 };
 
 const relationId = (state, props) => {
-  return ({
-    relations: props.connections.map((con) => {
-      if (con === 0 ) {
-        return state.session.user
-      }
-      return state.users[con]
-    }),
+  const relations = props.connections && props.connections.map((con) => {
+    if (con === 0 ) {
+      return state.session.user
+    }
+
+    return state.users[con]
   });
+
+  return {
+    relations
+  };
 }
 
 export default connect(relationId, null)(RelationField);

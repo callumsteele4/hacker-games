@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using hacker_games_trainline.Data;
 using hacker_games_trainline.Model;
+using hacker_games_trainline.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -56,7 +57,7 @@ namespace hacker_games_trainline
             var tomId = 5;
             var princeId = 6;
                 
-            CurrentUser.User = new Person { Name = "Natalie Akam", ChildrenIds = new List<int> { callumId }, PartnerId = tomId, PicturePath = "http://hacker-games-trainline20170126053304.azurewebsites.net/Natalie.jpg" };
+            CurrentUser.User = new Person { Name = "Natalie Akam", Birthday = new DateTime(1992, 6, 15), ChildrenIds = new List<int> { callumId }, PartnerId = tomId, PicturePath = "http://hacker-games-trainline20170126053304.azurewebsites.net/Natalie.jpg" };
             Persons.AddPerson(CurrentUser.User);
 
 
@@ -115,6 +116,7 @@ namespace hacker_games_trainline
             
             Persons.AddRelationship(prince, tom, RelationshipType.Father.ToString());
 
+            QuestionStore.GenerateQuestions();
         }
     }
 }

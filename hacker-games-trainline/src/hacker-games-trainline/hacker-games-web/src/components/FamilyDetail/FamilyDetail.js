@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import moment from 'moment';
 import { colors } from '../../styles/colors';
-import sample from '../../images/sample-500x500.png';
 import FamilyDetailField from './FamilyDetailField';
 import RelationField from './RelationField';
 import { styles as familyStyles } from './FamilyDetailStyles';
@@ -45,12 +44,12 @@ class FamilyDetail extends React.Component {
     if (!user) {
       return null;
     }
-    const birthday =  user.birthday ? moment().format('Do MMMM YYYY', user.birthday) : null;
+    const birthday =  user.birthday ? moment(user.birthday).format('Do MMMM YYYY') : null;
 
     return(
       <div>
         <div className={css(styles.avatarContainer)}>
-          <img className={css(styles.avatar)} src={sample} alt={user.name}/>
+          <img className={css(styles.avatar)} src={user.picturePath} alt={user.name}/>
         </div>
         <FamilyDetailField title="Name" info={user.name} />
         <FamilyDetailField 
@@ -68,12 +67,12 @@ class FamilyDetail extends React.Component {
           </div>
         </div>
         { 
-          [user.partnerId] && 
-          <RelationField title="Partner" connections={[user.partnerId]}/>
+          user &&
+          <RelationField title="Partner" connections={user.partnerId && [user.partnerId]}/>
         }
         { 
-          user.childrenIds && 
-          <RelationField title="Children" connections={user.childrenIds}/>
+          user &&
+          <RelationField title="Children" connections={user.childrenIds && user.childrenIds}/>
         }
  
       </div>
@@ -81,11 +80,12 @@ class FamilyDetail extends React.Component {
   }
 };
 
-const userId = (state, props) => ({
-  user: state.users[props.params.id],
-  // partner: state.users[props.params.id] ? state.users[state.users[props.params.id].partnerId] : null,
-  // children: state.users[props.params.id] ? state.users[state.users[props.params.id].childrenIds] : null,
-});
+const userId = (state, props) => {
+  const user = state.users[props.params.id];
+  return {
+    user
+  };
+};
 
 export default connect(userId, null)(FamilyDetail);
 

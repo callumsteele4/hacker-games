@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { colors } from '../../styles/colors';
 import logoImage from './user.png';
+import moment from 'moment';
 
 const userProfileStyle = StyleSheet.create({
   root: {
@@ -21,23 +22,35 @@ const userProfileStyle = StyleSheet.create({
     overflow: 'hidden',
     margin: 'auto',
     marginBottom: 20
+  },
+  dob: {
+    fontSize: 13,
+    color: '#b3b2b2'
   }
 });
 
 class UserProfile extends Component {
   render() {
     const { user } = this.props;
-  
+    if (!user) {
+      return null;
+    }
+
     return (
       <div className={css(userProfileStyle.root)}>
         <div className={css(userProfileStyle.imageWrapper)}>
           <img
-            src={user && user.picturePath}
+            src={user.picturePath}
             alt="user"
             className={css(userProfileStyle.userImage)}
           />
         </div>
-        { user && user.name }
+        <div>
+          { user.name }
+        </div>
+        <div className={css(userProfileStyle.dob)}>
+          { moment(user.birthday).format('Do MMMM YYYY') }
+        </div>
       </div>
     );
   }
