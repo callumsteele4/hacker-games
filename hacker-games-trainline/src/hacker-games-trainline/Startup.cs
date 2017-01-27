@@ -61,7 +61,7 @@ namespace hacker_games_trainline
             Persons.AddPerson(CurrentUser.User);
 
 
-            var callum = new Person { Name = "Callum Steele", City = "London", Job = "Developer", Note = "Callum likes to party!", Birthday = new DateTime(1992, 6, 15), PicturePath = "http://hacker-games-trainline20170126053304.azurewebsites.net/Callum.jpg" };
+            var callum = new Person { Name = "Callum Steele", City = "London", Job = "Developer", Note = "Callum likes to party!", Birthday = new DateTime(1992, 6, 15), PicturePath = "http://hacker-games-trainline20170126053304.azurewebsites.net/Callum.gif" };
             var marta = new Person { Name = "Marta Ludovico", City = "Reading", Job = "Developer", Note = "Marta hurt her ankle", Birthday = new DateTime(1987, 8, 12), PicturePath = "http://hacker-games-trainline20170126053304.azurewebsites.net/Marta.jpg" };
             var alexandre = new Person { Name = "Alexandre Rieux", City = "Paris", Job = "Lord of Shadwell", Note = "He's a Lord", Birthday = new DateTime(1982, 6, 10), ChildrenIds = new List<int> { natalieId, martaId }, PartnerId = shakeelId, PicturePath = "http://hacker-games-trainline20170126053304.azurewebsites.net/Alex.jpg" };
             var shakeel = new Person { Name = "Shakeel Mohammed", City = "Dublin", Job = "Developer", Note = "Shak likes to party!", Birthday = new DateTime(1984, 6, 25), ChildrenIds = new List<int> { natalieId, martaId }, PartnerId = alexandreId, PicturePath = "http://hacker-games-trainline20170126053304.azurewebsites.net/Shak.jpg" };
