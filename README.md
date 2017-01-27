@@ -15,3 +15,5 @@ This app is a way to help them retain certain memories and facts about the peopl
 We are using the [QuickGraph](http://quickgraph.codeplex.com/) library to represent and store our data related to the user's family. This allows us to use a bidirectional graph to represent people, and the relationships between them.
 
 With no previous experience using a graph data structure, this was a bit of a risk, but we believe it has paid off, allowing an intuitive representation of a family tree, and would serve us well in future features.
+
+The code we use for this can be found [here](/hacker-games-trainline/src/hacker-games-trainline/Data/Persons.cs).
