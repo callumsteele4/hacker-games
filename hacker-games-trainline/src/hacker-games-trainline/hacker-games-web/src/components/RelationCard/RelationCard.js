@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
-import sample from '../../images/sample.png';
 
 const styles = StyleSheet.create({
   container: {
@@ -37,7 +36,7 @@ const styles = StyleSheet.create({
 const RelationCard = ({ relation }) => (
   <div className={css(styles.container)}>
     <div className={css(styles.imageContainer)}>
-      <img className={css(styles.image)} src={relation.picturePath}/>
+      <img className={css(styles.image)} src={relation.picturePath} role="presentation"/>
     </div>
     <div className={css(styles.description)}>
       <h2 className={css(styles.name)}>{ relation.name }</h2>

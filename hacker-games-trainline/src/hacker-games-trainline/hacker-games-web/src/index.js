@@ -22,7 +22,6 @@ import QuizWrapper from './components/QuizWrapper/QuizWrapper';
 import Quiz from './components/Quiz/Quiz';
 import Result from './components/Result/Result';
 
-const env = process.env.NODE_ENV;
 const middlewares = [ thunk ];
 
 middlewares.push(createLogger());
