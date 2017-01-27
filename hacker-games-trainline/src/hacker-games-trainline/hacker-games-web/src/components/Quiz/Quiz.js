@@ -33,7 +33,8 @@ class Quiz extends React.Component {
   state = {
     questionType: Math.round(Math.random()),
     value: '',
-    tried: 0
+    tried: 0,
+    timing: false
   }
 
   static contextTypes = {
@@ -65,9 +66,9 @@ class Quiz extends React.Component {
     this.props.answerQuestion({
       ...currentQuestion,
       correct: isCorrect
+    }).then(() => {
+      this.props.getQuestion();
     });
-
-    this.props.getQuestion();
   };
 
   onNext(currentQuestion) {
@@ -88,13 +89,15 @@ class Quiz extends React.Component {
     // Second try still not correct
     if (!isCorrect && tried === 1) {
       this.setState({
-        value: currentQuestion.name
+        value: currentQuestion.name,
+        timing: true
       });
 
       setTimeout(() => {
         if (isEnd) {
           this.context.router.push('quiz/result');
         } else {
+          this.setState({ timing: false });
           this.answerQuestion(currentQuestion, isCorrect);
         }
       }, 1000);
@@ -147,7 +150,7 @@ class Quiz extends React.Component {
           <SmallButton onClick={this.onGetAnswer}>
             Solution
           </SmallButton>
-          <SmallButton onClick={this.onNext.bind(this, lastQuestion)} color="#1abc9c">
+          <SmallButton onClick={this.onNext.bind(this, lastQuestion)} color="#1abc9c" disable={this.state.timing}>
             Next
           </SmallButton>
         </div>
@@ -166,7 +169,7 @@ export default connect((state, props) => {
     lastQuestion
   }
 }, dispatch => ({
-  startQuiz: () => { dispatch(startQuiz()) },
-  getQuestion: () => { dispatch(getQuestion()) },
-  answerQuestion: (...args) => { dispatch(answerQuestion(...args)) }
+  startQuiz: () => dispatch(startQuiz()),
+  getQuestion: () => dispatch(getQuestion()),
+  answerQuestion: (...args) => dispatch(answerQuestion(...args))
 }))(Quiz);

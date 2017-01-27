@@ -1,33 +1,13 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
-import { colors } from '../../styles/colors';
-
-const styles = StyleSheet.create({
-  row: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    padding: '10px',
-    borderBottom: 'solid 1px #d4d4d4',
-    lineHeight: '26px'
-  },
-  title: {
-    color: colors.greyish,
-    fontWeight: 'bold',
-    fontSize: '20px'
-  },
-  info: {
-    color: colors.brownishGrey,
-    fontWeight: 'normal',
-    fontSize: '16px'
-  }
-});
+import { styles as familyStyles } from './FamilyDetailStyles';
 
 const FamilyDetailField = ({ title, info }) => (
-  <div className={css(styles.row)}>
-    <span className={css(styles.title)}>
+  <div className={css(familyStyles.row)}>
+    <span className={css(familyStyles.title)}>
       {title}
     </span>
-    <span className={css(styles.info)}>
+    <span className={css(familyStyles.info)}>
       {info}
     </span>
   </div>
