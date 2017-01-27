@@ -53,8 +53,9 @@ namespace hacker_games_trainline
             var martaId = 2;
             var alexandreId = 3;
             var shakeelId = 4;
-
             var tomId = 5;
+            var princeId = 6;
+                
             CurrentUser.User = new Person { Name = "Natalie Akam", ChildrenIds = new List<int> { callumId }, PartnerId = tomId, PicturePath = "Natalie.jpg" };
             Persons.AddPerson(CurrentUser.User);
 
@@ -64,6 +65,7 @@ namespace hacker_games_trainline
             var alexandre = new Person { Name = "Alexandre Rieux", Birthday = new DateTime(1982, 6, 10), ChildrenIds = new List<int> { natalieId, martaId }, PartnerId = shakeelId, PicturePath = "http://hacker-games-trainline20170126053304.azurewebsites.net/Alex.jpg" };
             var shakeel = new Person { Name = "Shakeel Mohammed", Birthday = new DateTime(1984, 6, 25), ChildrenIds = new List<int> { natalieId, martaId }, PartnerId = alexandreId, PicturePath = "http://hacker-games-trainline20170126053304.azurewebsites.net/Shak.jpg" };
             var tom = new Person { Name = "Tom Price", Birthday = new DateTime(1965, 6, 21), ChildrenIds = new List<int> { callumId }, PartnerId = natalieId, PicturePath = "http://hacker-games-trainline20170126053304.azurewebsites.net/Tom.jpg" };
+            var prince = new Person { Name = "Prince", Birthday = new DateTime(1960, 6, 21), City = "London", Job = "Developer", Note = "Prince likes to party like its 1999!", ChildrenIds = new List<int> { callumId }, PartnerId = natalieId, PicturePath = "http://hacker-games-trainline20170126053304.azurewebsites.net/Prince.jpg" };
 
 
             Persons.AddPerson(callum);
@@ -71,12 +73,14 @@ namespace hacker_games_trainline
             Persons.AddPerson(alexandre);
             Persons.AddPerson(shakeel);
             Persons.AddPerson(tom);
+            Persons.AddPerson(prince);
 
             Persons.AddRelationship(CurrentUser.User, marta, RelationshipType.Sister.ToString());
             Persons.AddRelationship(CurrentUser.User, callum, RelationshipType.Son.ToString());
             Persons.AddRelationship(CurrentUser.User, alexandre, RelationshipType.Father.ToString());
             Persons.AddRelationship(CurrentUser.User, shakeel, RelationshipType.Father.ToString());
             Persons.AddRelationship(CurrentUser.User, tom, RelationshipType.Husband.ToString());
+            Persons.AddRelationship(CurrentUser.User, prince, RelationshipType.Husband.ToString());
 
             Persons.AddRelationship(marta, CurrentUser.User, RelationshipType.Sister.ToString());
             Persons.AddRelationship(marta, callum, RelationshipType.Nephew.ToString());
