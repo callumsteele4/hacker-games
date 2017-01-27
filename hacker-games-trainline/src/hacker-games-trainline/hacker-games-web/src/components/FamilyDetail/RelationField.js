@@ -34,14 +34,12 @@ const styles = StyleSheet.create({
 class RelationField extends React.Component {
   render() {
     const { title, connections, relations } = this.props;
-    console.log('PROPS...', this.props);
-    console.log('RELATIONS...', this.props.relations);
     if(!relations) {
       return null;
     }
 
     const relationItems = relations.map((rel) => (
-      <div className={css(styles.relationContainer)}>
+      <div key={rel.id} className={css(styles.relationContainer)}>
         <div className={css(styles.thumbnailContainer)}>
           <img className={css(styles.thumbnail)} src={sample} alt={rel.name}/>
         </div>
