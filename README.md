@@ -26,7 +26,7 @@ We used React to create reusable components and Redux to manage and control the 
 ### Adaptive Quizzing
 
 In order to improve the effectiveness of the quiz section, we decided to give priority to questions that had been asked furthest in the past and also those with the most incorrect answers.
-To achieve this, we have researched and implemented an algorithm that will determine which question to present the user, based on the user's previous answers.
+To achieve this, we have implemented a custom algorithm that will determine which question to present the user, based on the user's previous answers.
 
 ### Graph Database
 
