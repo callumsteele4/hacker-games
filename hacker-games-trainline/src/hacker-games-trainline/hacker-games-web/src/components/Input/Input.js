@@ -16,12 +16,16 @@ const styles = StyleSheet.create({
   correct: {
     border: 'solid 1px #1abc9c',
     color: '#1abc9c'
+  },
+  isWrong: {
+    border: 'solid 1px #e74c3c',
+    color: '#e74c3c'
   }
 });
 
-const Input = ({ onChange, value, isCorrect }) => (
+const Input = ({ onChange, value, isCorrect, isWrong }) => (
   <input
-    className={css(styles.input, isCorrect && styles.correct)}
+    className={css(styles.input, isCorrect && styles.correct, isWrong && styles.isWrong)}
     type="text"
     onChange={onChange}
     value={value}

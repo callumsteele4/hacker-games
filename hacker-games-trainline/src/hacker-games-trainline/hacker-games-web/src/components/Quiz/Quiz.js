@@ -32,8 +32,13 @@ class Quiz extends React.Component {
 
   state = {
     questionType: Math.round(Math.random()),
-    value: ''
+    value: '',
+    tried: 0
   }
+
+  static contextTypes = {
+    router: React.PropTypes.object
+  };
 
   componentWillMount() {
     this.props.startQuiz(); // Start the quiz and fetch first question
@@ -48,18 +53,61 @@ class Quiz extends React.Component {
     });
   }
 
-  onNext(currentQuestion) {
+  answerQuestion = (currentQuestion, isCorrect) => {
+    // const computedTried = !isCorrect && tried === 0 ? 1 : undefined;
+
     this.setState({
       questionType: Math.round(Math.random()),
-      value: ''
+      value: '',
+      tried: 0
     });
 
     this.props.answerQuestion({
       ...currentQuestion,
-      correct: currentQuestion.name === this.state.value
+      correct: isCorrect
     });
 
     this.props.getQuestion();
+  };
+
+  onNext(currentQuestion) {
+    const { questions } = this.props;
+    const { tried, value } = this.state;
+    const isCorrect = currentQuestion.name === value;
+    const isEnd = Object.keys(questions).length === 9;
+
+    // First try not correct
+    if (!isCorrect && tried === 0) {
+      this.setState({
+        tried: 1
+      });
+
+      return;
+    }
+
+    // Second try still not correct
+    if (!isCorrect && tried === 1) {
+      this.setState({
+        value: currentQuestion.name
+      });
+
+      setTimeout(() => {
+        if (isEnd) {
+          this.context.router.push('quiz/result');
+        } else {
+          this.answerQuestion(currentQuestion, isCorrect);
+        }
+      }, 1000);
+
+      return;
+    }
+
+    // Response correct
+    if (isEnd) {
+      this.context.router.push('quiz/result');
+    } else {
+      this.answerQuestion(currentQuestion, isCorrect);
+    }
   }
 
   onChangeInput = (evt) => {
@@ -93,10 +141,11 @@ class Quiz extends React.Component {
         <Input
           onChange={this.onChangeInput}
           isCorrect={lastQuestion && lastQuestion.name === this.state.value}
+          isWrong={this.state.tried === 1}
           value={this.state.value}/>
         <div className={css(styles.navigation)}>
           <SmallButton onClick={this.onGetAnswer}>
-            Answer
+            Solution
           </SmallButton>
           <SmallButton onClick={this.onNext.bind(this, lastQuestion)} color="#1abc9c">
             Next
