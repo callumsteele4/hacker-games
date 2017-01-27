@@ -24,9 +24,8 @@ Family quiz - Gamified memory training with focus on family members;
 
 ### Adaptive Quizzing
 
-We wanted to give priority to questions not being answered for a longer time period and with more incorrect answers.
-In order to achieve this we implemented a simple algorithm that updates the probability of each item being picked based on each new answer.
-
+In order to improve the effectiveness of the quiz section, we decided to give priority to questions that had been asked furthest in the past and also those with the most incorrect answers.
+To achieve this, we have researched and discovered ways to implement an algorithm that will determine which question to present the user, based on the user's previous answers.
 
 ### Graph Database
 
