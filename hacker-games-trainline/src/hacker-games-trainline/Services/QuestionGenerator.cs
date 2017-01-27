@@ -17,7 +17,19 @@ namespace hacker_games_trainline.Services
 
         public Question AdaptiveAlgorithmQuestion()
         {
-            return null;
+            var persons = Persons.GetAll(CurrentUser.User.Id);
+            var correctPerson = Persons.FindPerson(QuestionStore.SuggestName());
+            var incorrectPersons = persons.Except(new[] {correctPerson}).ToList();
+
+            var shuffler = new Shuffler();
+            var randomDigits = shuffler.Shuffle(Enumerable.Range(0, incorrectPersons.Count).ToList()).Take(3).ToArray();
+
+            var question = new Question { PicturePaths = new List<PictureQuestion>(), Guid = Guid.NewGuid() };
+            SetCorrectPicturePath(question, correctPerson);
+            SetIncorrectPicturePaths(question,
+                new List<Person> { incorrectPersons[randomDigits[0]], incorrectPersons[randomDigits[1]], incorrectPersons[randomDigits[2]] });
+
+            return question;
         }
 
         public Question RandomQuestion()
