@@ -56,7 +56,7 @@ namespace hacker_games_trainline
             var tomId = 5;
             var princeId = 6;
                 
-            CurrentUser.User = new Person { Name = "Natalie Akam", ChildrenIds = new List<int> { callumId }, PartnerId = tomId, PicturePath = "http://hacker-games-trainline20170126053304.azurewebsites.net/Natalie.jpg" };
+            CurrentUser.User = new Person { Name = "Natalie Akam", Birthday = new DateTime(1992, 6, 15), ChildrenIds = new List<int> { callumId }, PartnerId = tomId, PicturePath = "http://hacker-games-trainline20170126053304.azurewebsites.net/Natalie.jpg" };
             Persons.AddPerson(CurrentUser.User);
 
 

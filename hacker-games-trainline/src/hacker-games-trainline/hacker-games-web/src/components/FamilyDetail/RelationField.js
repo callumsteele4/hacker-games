@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { styles as familyStyles } from './FamilyDetailStyles';
-import sample from '../../images/sample.png';
 
 const styles = StyleSheet.create({
   relationRow: {
@@ -19,12 +18,13 @@ const styles = StyleSheet.create({
     display: 'flex',
   },
   thumbnailContainer: {
-
+    width: '75px',
+    height: '75px',
+    overflow: 'hidden',
+    borderRadius: '50%'
   },
   thumbnail: {
-    borderRadius: '50%',
     width: '75px',
-    height: '75px'
   },
   name: {
     color: '#6d6d6d'
@@ -41,7 +41,7 @@ class RelationField extends React.Component {
     const relationItems = relations.map((rel) => (
       <div key={rel.id} className={css(styles.relationContainer)}>
         <div className={css(styles.thumbnailContainer)}>
-          <img className={css(styles.thumbnail)} src={sample} alt={rel.name}/>
+          <img className={css(styles.thumbnail)} src={rel && rel.picturePath} alt={rel.name}/>
         </div>
         <div className={css(styles.name)}>
           {rel.name}
