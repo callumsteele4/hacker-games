@@ -23,6 +23,11 @@ namespace hacker_games_trainline.Data
             return Graph.Vertices.Single(p => p.Id == id);
         }
 
+        public static Person FindPerson(string name)
+        {
+            return Graph.Vertices.Single(p => p.Name == name);
+        }
+
         public static IEnumerable<Person> GetAll(int id)
         {
             var relations = Graph.Edges.Where(e => e.Source.Id == id);
