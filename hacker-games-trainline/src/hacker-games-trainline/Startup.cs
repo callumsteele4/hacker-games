@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using hacker_games_trainline.Data;
 using hacker_games_trainline.Model;
+using hacker_games_trainline.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -115,6 +116,7 @@ namespace hacker_games_trainline
             
             Persons.AddRelationship(prince, tom, RelationshipType.Father.ToString());
 
+            QuestionStore.GenerateQuestions();
         }
     }
 }

@@ -23,7 +23,7 @@ namespace hacker_games_trainline.Controllers
         [HttpPost]
         public void Post([FromBody] Question question)
         {
-            // Store answer from question.Correct (bool)
+            QuestionStore.ParseQuestionResult(question);
         }
     }
 }
