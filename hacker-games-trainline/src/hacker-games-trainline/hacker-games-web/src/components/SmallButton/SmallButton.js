@@ -10,6 +10,9 @@ const styles = StyleSheet.create({
     border: 0,
     cursor: 'pointer',
     fontSize: 16
+  },
+  disabled: {
+    opacity: 0.6
   }
 });
 
@@ -20,10 +23,14 @@ class SmallButton extends Component {
   };
 
   render() {
-    const { color, children, onClick } = this.props;
+    const { color, children, onClick, disable } = this.props;
 
     return (
-      <button className={css(styles.container)} style={{ backgroundColor: color }} onClick={onClick}>
+      <button
+        className={css(styles.container, disable && styles.disabled)}
+        style={{ backgroundColor: color }}
+        onClick={onClick}
+        disabled={disable}>
         { children }
       </button>
     );
