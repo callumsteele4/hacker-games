@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { styles as familyStyles } from './FamilyDetailStyles';
-import sample from '../../images/sample.png';
 
 const styles = StyleSheet.create({
   relationRow: {
