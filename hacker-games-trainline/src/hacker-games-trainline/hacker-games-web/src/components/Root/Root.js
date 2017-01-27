@@ -5,9 +5,8 @@ import { getUser } from '../../actions/sessionActions';
 
 const styles = StyleSheet.create({
   root: {
-    width: 375,
-    minHeight: '100vh',
-    margin: '0px auto'
+    width: '100%',
+    minHeight: '100vh'
   }
 });
 
