@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import moment from 'moment';
 import { colors } from '../../styles/colors';
-import sample from '../../images/sample-500x500.png';
 import FamilyDetailField from './FamilyDetailField';
 import RelationField from './RelationField';
 import { styles as familyStyles } from './FamilyDetailStyles';
@@ -50,7 +49,7 @@ class FamilyDetail extends React.Component {
     return(
       <div>
         <div className={css(styles.avatarContainer)}>
-          <img className={css(styles.avatar)} src={sample} alt={user.name}/>
+          <img className={css(styles.avatar)} src={user.picturePath} alt={user.name}/>
         </div>
         <FamilyDetailField title="Name" info={user.name} />
         <FamilyDetailField 
