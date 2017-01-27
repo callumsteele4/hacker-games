@@ -12,20 +12,32 @@ const userProfileStyle = StyleSheet.create({
   },
   userImage: {
     display: 'block',
-    margin: '17px auto'
+    maxWidth: '100%'
+  },
+  imageWrapper: {
+    width: 100,
+    height: 100,
+    borderRadius: '50%',
+    overflow: 'hidden',
+    margin: 'auto',
+    marginBottom: 20
   }
 });
 
 class UserProfile extends Component {
   render() {
+    const { user } = this.props;
+  
     return (
       <div className={css(userProfileStyle.root)}>
-        <img 
-          src={logoImage}
-          alt="user"
-          className={css(userProfileStyle.userImage)}
-        />
-        Tom Price
+        <div className={css(userProfileStyle.imageWrapper)}>
+          <img
+            src={user && user.picturePath}
+            alt="user"
+            className={css(userProfileStyle.userImage)}
+          />
+        </div>
+        { user && user.name }
       </div>
     );
   }
