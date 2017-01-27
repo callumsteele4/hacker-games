@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   relationContainer: {
     width: '100px',
     textAlign: 'center',
-    padding: '17px 10px'
+    padding: '0 10px 17px 10px'
   },
   relationItemsContainer: {
     display: 'flex',
@@ -21,7 +21,8 @@ const styles = StyleSheet.create({
     width: '75px',
     height: '75px',
     overflow: 'hidden',
-    borderRadius: '50%'
+    borderRadius: '50%',
+    margin: '10px auto'
   },
   thumbnail: {
     width: '75px',
