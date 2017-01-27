@@ -13,9 +13,9 @@ Aging picture for some family members, facilitating the connection between the "
 Family quiz - Gamified memory training with focus on family members;
 
 ## Future development
-- Adding family tree representation;
-- Improving quiz adaptive algorithm;???
-- Adding a trigger mechanism so it must not rely in action initiated by the user;
+- Adding family tree representation
+- Improving quiz adaptive algorithm
+- Adding a trigger mechanism so it must not rely on action initiated by the user
 
 ## Front End Stack
 
@@ -27,6 +27,8 @@ We used React to create reusable components and Redux to manage and control the 
 
 In order to improve the effectiveness of the quiz section, we decided to give priority to questions that had been asked furthest in the past and also those with the most incorrect answers.
 To achieve this, we have implemented a custom algorithm that will determine which question to present the user, based on the user's previous answers.
+
+The code related to this can be found [here](/hacker-games-trainline/src/hacker-games-trainline/Services/QuestionStore.cs) and [here](/hacker-games-trainline/src/hacker-games-trainline/Services/QuestionGenerator.cs).
 
 ### Graph Database
 
