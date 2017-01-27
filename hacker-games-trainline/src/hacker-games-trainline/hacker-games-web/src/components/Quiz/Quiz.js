@@ -66,9 +66,9 @@ class Quiz extends React.Component {
     this.props.answerQuestion({
       ...currentQuestion,
       correct: isCorrect
+    }).then(() => {
+      this.props.getQuestion();
     });
-
-    this.props.getQuestion();
   };
 
   onNext(currentQuestion) {
@@ -169,7 +169,7 @@ export default connect((state, props) => {
     lastQuestion
   }
 }, dispatch => ({
-  startQuiz: () => { dispatch(startQuiz()) },
-  getQuestion: () => { dispatch(getQuestion()) },
-  answerQuestion: (...args) => { dispatch(answerQuestion(...args)) }
+  startQuiz: () => dispatch(startQuiz()),
+  getQuestion: () => dispatch(getQuestion()),
+  answerQuestion: (...args) => dispatch(answerQuestion(...args))
 }))(Quiz);
