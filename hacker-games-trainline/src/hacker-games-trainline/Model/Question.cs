@@ -2,7 +2,7 @@
 {
     public class Question
     {
-        public string Name { get; set; }
+        public int Id { get; set; }
         public string PicturePath { get; set; }
         public bool? Correct { get; set; }
     }

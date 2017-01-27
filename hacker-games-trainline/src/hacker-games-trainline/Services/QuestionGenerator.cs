@@ -24,7 +24,7 @@ namespace hacker_games_trainline.Services
             var persons = Persons.GetAll(CurrentUser.User.Id).ToList();
             var randomNum = _random.Next(1, persons.Count + 1);
             var selectedPerson = persons.Single(p => p.Id == randomNum);
-            return new Question { Name = selectedPerson.Name, PicturePath = selectedPerson.PicturePath };
+            return new Question { Id = selectedPerson.Id, PicturePath = selectedPerson.PicturePath };
         }
     }
 }
