@@ -17,49 +17,43 @@ namespace hacker_games_trainline.Services
 
         public static string SuggestName()
         {
-            // Need to create a score, (incorrect - correct) * score of date order
-
-            // Initialise scores
-            var scores = new Dictionary<string, double>();
+            var scores = new Dictionary<string, float>();
             QuestionData.Select(qd => qd.Key).ToList().ForEach(k => scores.Add(k, 0));
             
-            // Add scores for ordering
             scores = SetLastAnsweredScores(scores);
 
-            // Apply scores for incorrect/correct
             scores = SetCorrectIncorrectScores(scores);
 
             return scores.OrderByDescending(s => s.Value).First().Key;
-            //return QuestionData.OrderBy(qd => qd.Value.LastAnswered).First().Key;
         }
 
-        private static Dictionary<string, double> SetCorrectIncorrectScores(Dictionary<string, double> scores)
+        private static Dictionary<string, float> SetCorrectIncorrectScores(Dictionary<string, float> scores)
         {
-            var newScores = new Dictionary<string, double>();
+            var newScores = new Dictionary<string, float>();
 
             foreach (var score in QuestionData)
             {
                 if (score.Value.TimesIncorrect > score.Value.TimesCorrect)
                 {
-                    newScores.Add(score.Key, (score.Value.TimesIncorrect - score.Value.TimesCorrect + 1) * scores[score.Key]);
+                    newScores.Add(score.Key, (score.Value.TimesIncorrect / (score.Value.TimesCorrect + 1)) * scores[score.Key]);
                 } else if (score.Value.TimesIncorrect == score.Value.TimesCorrect && score.Value.TimesCorrect == 0)
                 {
                     newScores.Add(score.Key, scores.Count * scores[score.Key]);
                 } else if (score.Value.TimesIncorrect == score.Value.TimesCorrect)
                 {
-                    newScores.Add(score.Key, (score.Value.TimesCorrect / 2) * scores[score.Key]);
+                    newScores.Add(score.Key, score.Value.TimesCorrect * scores[score.Key]);
                 } else if (score.Value.TimesIncorrect < score.Value.TimesCorrect)
                 {
-                    newScores.Add(score.Key, (1 / (score.Value.TimesCorrect - score.Value.TimesIncorrect)) * scores[score.Key]);
+                    newScores.Add(score.Key, scores[score.Key]);
                 }
             }
 
             return newScores;
         }
 
-        private static Dictionary<string, double> SetLastAnsweredScores(IDictionary<string, double> scores)
+        private static Dictionary<string, float> SetLastAnsweredScores(IDictionary<string, float> scores)
         {
-            var newScores = new Dictionary<string, double>();
+            var newScores = new Dictionary<string, float>();
             var orderedByDate = QuestionData.OrderByDescending(qd => qd.Value.LastAnswered).ToArray();
 
             foreach (var score in scores)
@@ -67,7 +61,7 @@ namespace hacker_games_trainline.Services
                 newScores.Add(score.Key,
                     QuestionData[score.Key].LastAnswered == null
                         ? 10
-                        : Array.FindIndex(orderedByDate, qd => qd.Key == score.Key));
+                        : 2 ^ Array.FindIndex(orderedByDate, qd => qd.Key == score.Key) - 1);
             }
             return newScores;
         }
