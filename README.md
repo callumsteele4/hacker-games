@@ -12,13 +12,14 @@ Aging picture for some family members, facilitating the connection between the "
 
 Family quiz - Gamified memory training with focus on family members;
 
-
-
 ## Future development
 - Adding family tree representation;
 - Improving quiz adaptive algorithm;???
 - Adding a trigger mechanism so it must not rely in action initiated by the user;
 
+## Front End Stack
+
+We used React to create reusable components and Redux to manage and control the flow of state. We used aphrodite for CSS, allowing us to package the styles up in the components themselves as JavaScript objects.
 
 ## Interesting Tech
 
