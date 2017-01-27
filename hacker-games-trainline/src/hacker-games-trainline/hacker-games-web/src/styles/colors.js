@@ -4,5 +4,6 @@ export const colors = {
   darkSkyBlue: '#3498db',
   squash: '#f39c12',
   brownishGrey: '#6c6c6c',
-  greyish: '#b3b2b2'
+  greyish: '#b3b2b2',
+  red: '#e74c3c'
 }

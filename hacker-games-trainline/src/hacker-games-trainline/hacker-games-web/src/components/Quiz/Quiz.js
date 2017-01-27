@@ -2,7 +2,7 @@ import React from 'react';
 import Progress from '../Progress/Progress';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { connect } from 'react-redux';
-import { startQuiz, getQuestion } from '../../actions/quizActions';
+import { startQuiz, getQuestion, answerQuestion } from '../../actions/quizActions';
 import SmallButton from '../SmallButton/SmallButton';
 import Input from '../Input/Input';
 
@@ -10,6 +10,10 @@ const styles = StyleSheet.create({
   container: {
     width: 320,
     margin: '0px auto'
+  },
+  imageContainer: {
+    height: 300,
+    overflow: 'hidden'
   },
   picture: {
     width: '100%'
@@ -20,6 +24,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'TL-Circular',
+    color: '#6c6c6c'
   }
 });
 
@@ -27,8 +32,13 @@ class Quiz extends React.Component {
 
   state = {
     questionType: Math.round(Math.random()),
-    value: ''
+    value: '',
+    tried: 0
   }
+
+  static contextTypes = {
+    router: React.PropTypes.object
+  };
 
   componentWillMount() {
     this.props.startQuiz(); // Start the quiz and fetch first question
@@ -43,12 +53,61 @@ class Quiz extends React.Component {
     });
   }
 
-  onNext = () => {
+  answerQuestion = (currentQuestion, isCorrect) => {
+    // const computedTried = !isCorrect && tried === 0 ? 1 : undefined;
+
     this.setState({
-      questionType: Math.round(Math.random())
+      questionType: Math.round(Math.random()),
+      value: '',
+      tried: 0
+    });
+
+    this.props.answerQuestion({
+      ...currentQuestion,
+      correct: isCorrect
     });
 
     this.props.getQuestion();
+  };
+
+  onNext(currentQuestion) {
+    const { questions } = this.props;
+    const { tried, value } = this.state;
+    const isCorrect = currentQuestion.name === value;
+    const isEnd = Object.keys(questions).length === 9;
+
+    // First try not correct
+    if (!isCorrect && tried === 0) {
+      this.setState({
+        tried: 1
+      });
+
+      return;
+    }
+
+    // Second try still not correct
+    if (!isCorrect && tried === 1) {
+      this.setState({
+        value: currentQuestion.name
+      });
+
+      setTimeout(() => {
+        if (isEnd) {
+          this.context.router.push('quiz/result');
+        } else {
+          this.answerQuestion(currentQuestion, isCorrect);
+        }
+      }, 1000);
+
+      return;
+    }
+
+    // Response correct
+    if (isEnd) {
+      this.context.router.push('quiz/result');
+    } else {
+      this.answerQuestion(currentQuestion, isCorrect);
+    }
   }
 
   onChangeInput = (evt) => {
@@ -73,16 +132,22 @@ class Quiz extends React.Component {
     return (
       <div className={css(styles.container)}>
         <Progress current={current}/>
-        <img className={css(styles.picture)} src={pp} role="presentation"/>
+        <div className={css(styles.imageContainer)}>
+          <img className={css(styles.picture)} src={pp} role="presentation"/>
+        </div>
         <h1 className={css(styles.title)}>
           What's their name ?
         </h1>
-        <Input onChange={this.onChangeInput} value={this.state.value}/>
+        <Input
+          onChange={this.onChangeInput}
+          isCorrect={lastQuestion && lastQuestion.name === this.state.value}
+          isWrong={this.state.tried === 1}
+          value={this.state.value}/>
         <div className={css(styles.navigation)}>
           <SmallButton onClick={this.onGetAnswer}>
-            Answer
+            Solution
           </SmallButton>
-          <SmallButton onClick={this.onNext} color="#1abc9c">
+          <SmallButton onClick={this.onNext.bind(this, lastQuestion)} color="#1abc9c">
             Next
           </SmallButton>
         </div>
@@ -102,5 +167,6 @@ export default connect((state, props) => {
   }
 }, dispatch => ({
   startQuiz: () => { dispatch(startQuiz()) },
-  getQuestion: () => { dispatch(getQuestion()) }
+  getQuestion: () => { dispatch(getQuestion()) },
+  answerQuestion: (...args) => { dispatch(answerQuestion(...args)) }
 }))(Quiz);

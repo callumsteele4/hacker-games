@@ -7,7 +7,8 @@ const styles = StyleSheet.create({
     height: 20,
     backgroundColor: '#e6e6e6',
     borderRadius: 8,
-    position: 'relative'
+    position: 'relative',
+    margin: '12px 0px'
   },
   progress: {
     height: 20,
