@@ -41,7 +41,7 @@ class RelationField extends React.Component {
     const relationItems = relations.map((rel) => (
       <div key={rel.id} className={css(styles.relationContainer)}>
         <div className={css(styles.thumbnailContainer)}>
-          <img className={css(styles.thumbnail)} src={sample} alt={rel.name}/>
+          <img className={css(styles.thumbnail)} src={rel && rel.picturePath} alt={rel.name}/>
         </div>
         <div className={css(styles.name)}>
           {rel.name}
