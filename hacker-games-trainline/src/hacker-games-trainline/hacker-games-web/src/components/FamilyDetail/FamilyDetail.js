@@ -45,7 +45,7 @@ class FamilyDetail extends React.Component {
     if (!user) {
       return null;
     }
-    const birthday =  user.birthday ? moment().format('Do MMMM YYYY', user.birthday) : null;
+    const birthday =  user.birthday ? moment(user.birthday).format('Do MMMM YYYY') : null;
 
     return(
       <div>
