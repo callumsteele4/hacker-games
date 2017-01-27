@@ -17,19 +17,19 @@ namespace hacker_games_trainline.Services
 
         public static string SuggestName()
         {
-            return QuestionData.First().Key;
+            return QuestionData.OrderBy(qd => qd.Value.LastAnswered).First().Key;
         }
 
         public static void ParseQuestionResult(Question question)
         {
             if (question.Correct != null && question.Correct.Value)
             {
-                QuestionData[question.Name].LastAsked = DateTime.Now;
+                QuestionData[question.Name].LastAnswered = DateTime.Now;
                 QuestionData[question.Name].TimesCorrect++;
             }
             else if (question.Correct != null && !question.Correct.Value)
             {
-                QuestionData[question.Name].LastAsked = DateTime.Now;
+                QuestionData[question.Name].LastAnswered = DateTime.Now;
                 QuestionData[question.Name].TimesIncorrect++;
             }
         }

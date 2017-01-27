@@ -17,7 +17,7 @@ namespace hacker_games_trainline.Controllers
         [HttpGet]
         public JsonResult Get()
         {
-            return Json(_questionGenerator.RandomQuestion());
+            return Json(_questionGenerator.AdaptiveAlgorithmQuestion());
         }
 
         [HttpPost]

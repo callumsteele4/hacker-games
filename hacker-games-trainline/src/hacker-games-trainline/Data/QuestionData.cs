@@ -6,6 +6,6 @@ namespace hacker_games_trainline.Data
     {
         public int TimesCorrect { get; set; }
         public int TimesIncorrect { get; set; }
-        public DateTime? LastAsked { get; set; }
+        public DateTime? LastAnswered { get; set; }
     }
 }
