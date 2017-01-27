@@ -32,6 +32,14 @@ export const getQuestion = () => dispatch => {
 };
 
 export const answerQuestion = (answer) => dispatch => {
-  return fetch(`${config.apiUrl}/questions`, { method: 'POST', body: answer })
-  .then(res => dispatch(addResponse(answer.id, answer.correct)))
+  return fetch(`${config.apiUrl}/questions`, {
+    method: 'POST',
+    body: JSON.stringify(answer),
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      'Accept-Charset': 'utf-8',
+    }
+  })
+  .then(res => dispatch(addResponse(answer.guid, answer.correct)))
 };

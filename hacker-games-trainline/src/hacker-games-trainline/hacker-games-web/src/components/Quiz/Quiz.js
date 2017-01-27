@@ -2,7 +2,7 @@ import React from 'react';
 import Progress from '../Progress/Progress';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { connect } from 'react-redux';
-import { startQuiz, getQuestion } from '../../actions/quizActions';
+import { startQuiz, getQuestion, answerQuestion } from '../../actions/quizActions';
 import SmallButton from '../SmallButton/SmallButton';
 import Input from '../Input/Input';
 
@@ -10,6 +10,10 @@ const styles = StyleSheet.create({
   container: {
     width: 320,
     margin: '0px auto'
+  },
+  imageContainer: {
+    height: 300,
+    overflow: 'hidden'
   },
   picture: {
     width: '100%'
@@ -20,6 +24,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'TL-Circular',
+    color: '#6c6c6c'
   }
 });
 
@@ -43,9 +48,15 @@ class Quiz extends React.Component {
     });
   }
 
-  onNext = () => {
+  onNext(currentQuestion) {
     this.setState({
-      questionType: Math.round(Math.random())
+      questionType: Math.round(Math.random()),
+      value: ''
+    });
+
+    this.props.answerQuestion({
+      ...currentQuestion,
+      correct: currentQuestion.name === this.state.value
     });
 
     this.props.getQuestion();
@@ -73,16 +84,21 @@ class Quiz extends React.Component {
     return (
       <div className={css(styles.container)}>
         <Progress current={current}/>
-        <img className={css(styles.picture)} src={pp} role="presentation"/>
+        <div className={css(styles.imageContainer)}>
+          <img className={css(styles.picture)} src={pp} role="presentation"/>
+        </div>
         <h1 className={css(styles.title)}>
           What's their name ?
         </h1>
-        <Input onChange={this.onChangeInput} value={this.state.value}/>
+        <Input
+          onChange={this.onChangeInput}
+          isCorrect={lastQuestion && lastQuestion.name === this.state.value}
+          value={this.state.value}/>
         <div className={css(styles.navigation)}>
           <SmallButton onClick={this.onGetAnswer}>
             Answer
           </SmallButton>
-          <SmallButton onClick={this.onNext} color="#1abc9c">
+          <SmallButton onClick={this.onNext.bind(this, lastQuestion)} color="#1abc9c">
             Next
           </SmallButton>
         </div>
@@ -102,5 +118,6 @@ export default connect((state, props) => {
   }
 }, dispatch => ({
   startQuiz: () => { dispatch(startQuiz()) },
-  getQuestion: () => { dispatch(getQuestion()) }
+  getQuestion: () => { dispatch(getQuestion()) },
+  answerQuestion: (...args) => { dispatch(answerQuestion(...args)) }
 }))(Quiz);
