@@ -68,12 +68,12 @@ class FamilyDetail extends React.Component {
           </div>
         </div>
         { 
-          [user.partnerId] && 
-          <RelationField title="Partner" connections={[user.partnerId]}/>
+          user &&
+          <RelationField title="Partner" connections={user.partnerId && [user.partnerId]}/>
         }
         { 
-          user.childrenIds && 
-          <RelationField title="Children" connections={user.childrenIds}/>
+          user &&
+          <RelationField title="Children" connections={user.childrenIds && user.childrenIds}/>
         }
  
       </div>
@@ -81,11 +81,12 @@ class FamilyDetail extends React.Component {
   }
 };
 
-const userId = (state, props) => ({
-  user: state.users[props.params.id],
-  // partner: state.users[props.params.id] ? state.users[state.users[props.params.id].partnerId] : null,
-  // children: state.users[props.params.id] ? state.users[state.users[props.params.id].childrenIds] : null,
-});
+const userId = (state, props) => {
+  const user = state.users[props.params.id];
+  return {
+    user
+  };
+};
 
 export default connect(userId, null)(FamilyDetail);
 

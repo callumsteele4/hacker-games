@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
 
 class RelationField extends React.Component {
   render() {
-    const { title, connections, relations } = this.props;
+    const { title, relations } = this.props;
     if(!relations) {
       return null;
     }
@@ -62,14 +62,17 @@ class RelationField extends React.Component {
 };
 
 const relationId = (state, props) => {
-  return ({
-    relations: props.connections.map((con) => {
-      if (con === 0 ) {
-        return state.session.user
-      }
-      return state.users[con]
-    }),
+  const relations = props.connections && props.connections.map((con) => {
+    if (con === 0 ) {
+      return state.session.user
+    }
+
+    return state.users[con]
   });
+
+  return {
+    relations
+  };
 }
 
 export default connect(relationId, null)(RelationField);
